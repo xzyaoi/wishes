@@ -4,16 +4,21 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <!-- User Management -->
+    <script src="https://cdn.jsdelivr.net/npm/sjcl@1.0.8/sjcl.min.js"></script>
     <script src="vendor/cognito/min.js"></script>
     <script src="assets/js/auth.js"></script>
     <!-- Card Management -->
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.13.1/dist/av-min.js"></script>
+    <script src="vendor/leancloud/storage.js"></script>
+    <script src="assets/js/wish.js"></script>
     <script src="assets/js/card.js"></script>
 </head>
 
 </html>
 
-<body>
+<body onload="indexOnload()">
     <div id="nescss">
         <header :class="{ sticky: scrollPos > 50 }">
             <div class="container">
@@ -25,7 +30,7 @@
                 </div>
                 <div class="social-buttons">
                     <div class="share">
-                        <a href="javascript:login()">Login</a>
+                        <a id="accountInfo" href="javascript:login()">Login</a>
                         <a href="https://xzyaoi.github.io">About</a>
                     </div>
                 </div>
@@ -41,27 +46,59 @@
                     <p class="nes-balloon from-right">Fork me<br />on GitHub</p>
                     <i class="nes-octocat" :class="animateOctocat ? 'animate' : ''"></i>
                 </a>
+                <section class="task_lists">
+                    <p>WISHES is a DIY Lottery Game.</p>
+                </section>
+
+                <section class="nes-container with-title">
+                    <h3 class="title">My Wish Lists</h3>
+                    <div class="lists">
+                        <ul class="nes-list is-disc" id="myWishItems">
+                        </ul>
+                    </div>
+                    <div id="newWishItem">
+                        <label for="newWishItemTitle">Title</label>
+                        <input type="text" id="newWishItemTitle" class="nes-input">
+
+                        <label for="default_select">Type of Wishes</label>
+                        <div class="nes-select">
+                            <select required id="newWishItemType">
+                                <option value="" disabled selected hidden>Select...</option>
+                                <option value="N">N</option>
+                                <option value="R">R</option>
+                                <option value="SR">SR</option>
+                                <option value="SSR">SSR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="nes-btn is-primary" onclick="putNewWishItem()">
+                        Add
+                    </button>
+                </section>
+
                 <section class="new_card">
                     <button type="button" class="nes-btn is-primary" onclick="newCard()">
-                        New Card!
+                        Achieve One Wish
                     </button>
                     <dialog class="nes-dialog is-rounded" id="card-dialog">
                         <form method="dialog">
                             <p class="title">New Card</p>
                             <div id="new_card_area">
-
                             </div>
                             <menu class="dialog-menu">
                                 <button class="nes-btn">Cancel</button>
                             </menu>
                         </form>
                     </dialog>
+                    <dialog class="nes-dialog is-rounded" id="lottery-dialog">
+                        <form method="dialog">
+                            <p id='card_result'>TEST</p>
+                            <menu class="dialog-menu">
+                                <button class="nes-btn">Confirm</button>
+                            </menu>
+                        </form>
+                    </dialog>
                 </section>
-                <section class="task_lists">
-                    <p>WISHES is a 2-player Lottery Game.</p>
-                </section>
-
-
 
             </main>
             <footer>

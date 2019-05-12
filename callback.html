@@ -1,26 +1,20 @@
 <html>
 
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- User Management -->
-    <script src="vendor/cognito/min.js"></script>
-    <script src="assets/js/auth.js"></script>
-
-    <style>
-        html,
-        body,
-        pre,
-        code,
-        kbd,
-        samp {}
-    </style>
-</head>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+        <link href="assets/css/style.css" rel="stylesheet" />
+        <!-- User Management -->
+        <script src="https://cdn.jsdelivr.net/npm/sjcl@1.0.8/sjcl.min.js"></script>
+        <script src="vendor/cognito/min.js"></script>
+        <script src="assets/js/auth.js"></script>
+        <!-- Card Management -->
+        <script src="assets/js/card.js"></script>
+    </head>
 
 </html>
 
-<body>
+<body onload="parse()">
     <div id="nescss">
         <header :class="{ sticky: scrollPos > 50 }">
             <div class="container">
