@@ -7,15 +7,8 @@
     <!-- User Management -->
     <script src="vendor/cognito/min.js"></script>
     <script src="assets/js/auth.js"></script>
-
-    <style>
-        html,
-        body,
-        pre,
-        code,
-        kbd,
-        samp {}
-    </style>
+    <!-- Card Management -->
+    <script src="assets/js/card.js"></script>
 </head>
 
 </html>
@@ -48,10 +41,27 @@
                     <p class="nes-balloon from-right">Fork me<br />on GitHub</p>
                     <i class="nes-octocat" :class="animateOctocat ? 'animate' : ''"></i>
                 </a>
-                <section class="topic">
-                    <h2 id="about"><a href="#about">#</a>About</h2>
-                    <p>NES.css is NES-style (8bit-like) CSS Framework.</p>
+                <section class="new_card">
+                    <button type="button" class="nes-btn is-primary" onclick="newCard()">
+                        New Card!
+                    </button>
+                    <dialog class="nes-dialog is-rounded" id="card-dialog">
+                        <form method="dialog">
+                            <p class="title">New Card</p>
+                            <div id="new_card_area">
+
+                            </div>
+                            <menu class="dialog-menu">
+                                <button class="nes-btn">Cancel</button>
+                            </menu>
+                        </form>
+                    </dialog>
                 </section>
+                <section class="task_lists">
+                    <p>WISHES is a 2-player Lottery Game.</p>
+                </section>
+
+
 
             </main>
             <footer>
